@@ -1,4 +1,4 @@
-package com.mycompany.cortes;
+package day5.LaboratoryExercise;
 
 import java.util.Scanner;
 
