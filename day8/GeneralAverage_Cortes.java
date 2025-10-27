@@ -11,13 +11,13 @@ public class GeneralAverage_Cortes {
         // Create a program that will display the overall AVERAGE GRADE
         Scanner scanner = new Scanner(System.in);
 
-        // Variable Declarations
+        // Variables
         String studentName;
         String subject;
         double totalPercent = 0;
         double generalAverage = 0;
 
-        // Array Declarations and Initialization
+        // Arrays
         String[] periods = {"PRELIMS", "MIDTERMS", "PREFINALS", "FINALS"};
         double[] percentages = new double[periods.length];
         double[] grades = new double[periods.length];
