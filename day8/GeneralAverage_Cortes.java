@@ -38,7 +38,7 @@ public class GeneralAverage_Cortes {
                 System.out.print("Enter the percentage (%): ");
                 percentages[i] = scanner.nextDouble();
                 if (percentages[i] < 0 || percentages[i] > 100) { // Data validation
-                    System.out.println("ERROR: Invalid input.");
+                    System.out.println("ERROR: Invalid input. Please try again.");
                 } else {
                     percentages[i] /= 100; // Converts to decimal form
                     totalPercent += percentages[i];
@@ -51,7 +51,7 @@ public class GeneralAverage_Cortes {
                 System.out.print("Enter your grade: ");
                 grades[i] = scanner.nextDouble();
                 if (grades[i] < 0 || grades[i] > 100) { // Data validation
-                    System.out.println("ERROR: Invalid input.");
+                    System.out.println("ERROR: Invalid input. Please try again.");
                 } else {
                     grades[i] *= percentages[i];
                     generalAverage += grades[i];
@@ -68,5 +68,7 @@ public class GeneralAverage_Cortes {
             System.out.printf("%n        SUBJECT:  %s", subject);
             System.out.printf("%nGENERAL AVERAGE:  %.2f", generalAverage);
         }
+
+        scanner.close();
     }
 }
