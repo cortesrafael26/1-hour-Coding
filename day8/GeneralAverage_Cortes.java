@@ -10,63 +10,81 @@ public class GeneralAverage_Cortes {
     public static void main(String[] args) {
         // Create a program that will display the overall AVERAGE GRADE
         Scanner scanner = new Scanner(System.in);
-
-        // Variables
-        String studentName;
-        String subject;
-        double totalPercent = 0;
-        double generalAverage = 0;
-
-        // Arrays
-        String[] periods = {"PRELIMS", "MIDTERMS", "PREFINALS", "FINALS"};
-        double[] percentages = new double[periods.length];
-        double[] grades = new double[periods.length];
+        boolean startProgram = true;
 
         // Start of Program
-        System.out.println("Welcome to the General Average Calculator!");
-        System.out.print("Enter your full name: ");
-        studentName = scanner.nextLine();
-        System.out.print("Enter the subject: ");
-        subject = scanner.nextLine();
+        while (startProgram) {
+            // Variables
+            String studentName;
+            String subject;
+            double totalPercent = 0;
+            double generalAverage = 0;
 
-        // For Loop
-        for (int i = 0; i < periods.length; i++) {
-            System.out.println("\n" + periods[i]);
+            // Arrays
+            String[] periods = {"PRELIMS", "MIDTERMS", "PREFINALS", "FINALS"};
+            double[] percentages = new double[periods.length];
+            double[] grades = new double[periods.length];
 
-            // Percentages
-            while (true) {
-                System.out.print("Enter the percentage (%): ");
-                percentages[i] = scanner.nextDouble();
-                if (percentages[i] < 0 || percentages[i] > 100) { // Data validation
-                    System.out.println("ERROR: Invalid input. Please try again.");
-                } else {
-                    percentages[i] /= 100; // Converts to decimal form
-                    totalPercent += percentages[i];
-                    break; // Exits if the input is valid
+            System.out.println("\nWelcome to the General Average Calculator!");
+            System.out.print("Enter the student's full name: ");
+            studentName = scanner.nextLine();
+            System.out.print("Enter the subject: ");
+            subject = scanner.nextLine();
+
+            // For Loop
+            for (int i = 0; i < periods.length; i++) {
+                System.out.println("\n" + periods[i]);
+
+                // Percentages
+                while (true) {
+                    System.out.print("Enter the percentage (%): ");
+                    percentages[i] = scanner.nextDouble();
+                    if (percentages[i] < 0 || percentages[i] > 100) { // Data validation
+                        System.out.println("ERROR: Invalid input. Please enter the percentage again.");
+                    } else {
+                        percentages[i] /= 100; // Converts to decimal form
+                        totalPercent += percentages[i];
+                        break; // Exits if the input is valid
+                    }
+                }
+
+                // Grades
+                while (true) {
+                    System.out.print("Enter the grade: ");
+                    grades[i] = scanner.nextDouble();
+                    if (grades[i] < 0 || grades[i] > 100) { // Data validation
+                        System.out.println("ERROR: Invalid input. Please enter the grade again.");
+                    } else {
+                        grades[i] *= percentages[i];
+                        generalAverage += grades[i];
+                        break; // Exits if the input is valid
+                    }
                 }
             }
 
-            // Grades
+            if (totalPercent != 1.0) { // Checks if the total percentage is 100%
+                System.out.println("\nERROR: The total percentage of grades does not add up to 100%.");
+            } else {
+                // Final Output
+                System.out.printf("%n   STUDENT NAME:  %s", studentName);
+                System.out.printf("%n        SUBJECT:  %s", subject);
+                System.out.printf("%nGENERAL AVERAGE:  %.2f%n", generalAverage);
+            }
+
             while (true) {
-                System.out.print("Enter your grade: ");
-                grades[i] = scanner.nextDouble();
-                if (grades[i] < 0 || grades[i] > 100) { // Data validation
-                    System.out.println("ERROR: Invalid input. Please try again.");
+                System.out.print("\nWould you like to run the program again? (Y/N): ");
+                String userChoice = scanner.next().toUpperCase();
+
+                if (userChoice.equals("Y")) {
+                    break; // Repeats the program
+                } else if (userChoice.equals("N")){
+                    System.out.println("\nThank you for using the General Average Calculator!");
+                    startProgram = false; // Does not repeat the program
+                    break;
                 } else {
-                    grades[i] *= percentages[i];
-                    generalAverage += grades[i];
-                    break; // Exits if the input is valid
+                    System.out.println("ERROR: Invalid input. Please enter your choice again.");
                 }
             }
-        }
-
-        if (totalPercent != 1.0) { // Checks if the total percentage is 100%
-            System.out.println("\nERROR: The total percentage of grades does not add up to 100%.");
-        } else {
-            // Final Output
-            System.out.printf("%n   STUDENT NAME:  %s", studentName);
-            System.out.printf("%n        SUBJECT:  %s", subject);
-            System.out.printf("%nGENERAL AVERAGE:  %.2f", generalAverage);
         }
 
         scanner.close();
